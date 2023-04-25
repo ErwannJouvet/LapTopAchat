@@ -1,0 +1,51 @@
+#title {
+    display: flex;
+    justify-content: center;
+}
+
+#externDivProduct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#divProduct {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #76de8c;
+    margin: 20px 0px 20px 0px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 10px gray;
+}
+
+#divProduct img {
+    width: 200px;
+    height: 200px;
+    border: 1px solid green;
+}
+
+#descriptionProduct {
+    padding: 0px 10px 0px 10px;
+}
+
+#boutonDetail {
+    margin-bottom: 10px;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #629264;
+    width: 30%;
+    border: 0;
+    padding: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+#boutonDetail:hover {
+    background: #43A047;
+}

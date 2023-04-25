@@ -1,0 +1,72 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <title>Document</title>
+</head>
+<body>
+    <div w3-include-html = "./navbar.html"></div>
+    <script src="./js/tools.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script>
+        async function loadDataNavbar() {
+            const response = await fetch("http://localhost:3000/categorys");
+            const jsonData = await response.json();
+            jsonData.forEach(element => {
+                var linkCat = document.createElement("a");
+                linkCat.href= "category.html?id="+element.id;
+                var linkCat_text = document.createTextNode(element.name);
+                linkCat.appendChild(linkCat_text);
+                document.getElementById("navLinks").appendChild(linkCat);
+            });
+
+            if(localStorage.getItem("tokens")){
+                var button= document.getElementById("connectButton");
+                button.innerHTML="Se dÃ©connecter";
+                button.onclick= (e)=>{
+                    e.preventDefault()
+                    localStorage.removeItem("tokens");
+                    window.location.reload()
+                }
+            }
+        }
+loadDataNavbar();
+        document.addEventListener("onload", function() {
+            location.href="login.html";
+        })
+        async function logJSONData(){
+            const json = await fetch("http://localhost:3000/products");
+            const jsonData = await json.json();
+            jsonData.forEach(element => {
+                console.log(jsonData);
+                let divProduct = document.createElement("div");
+                let titleProduct = document.createElement("span");
+                let title_text = document.createTextNode(element.name);
+                titleProduct.appendChild(title_text);
+                let imgProduct = document.createElement("img");
+                imgProduct.src = element.image;
+                let descriptionProduct = document.createElement("p");
+                let description_text = document.createTextNode(element.description);
+                descriptionProduct.appendChild(description_text);
+
+                let priceProduct = document.createElement("p");
+                let price_text = document.createTextNode("Prix : " + element.price);
+                console.log(price_text);
+                priceProduct.appendChild(price_text);
+
+                divProduct.appendChild(titleProduct);
+                divProduct.appendChild(imgProduct);
+                divProduct.appendChild(descriptionProduct);
+                divProduct.appendChild(priceProduct);
+                document.body.appendChild(divProduct);
+            });
+            return jsonData;
+        }
+        logJSONData();
+    </script>
+</body>
+</html> -->

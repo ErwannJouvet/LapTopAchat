@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des utilisateurs</title>
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./navbar.css" />
+</head>
+<body>
+    <div w3-include-html="./navbar.html"></div>
+    <script src="./tools.js"></script>
+    <script src="./navbar.js"></script>
+    <h1>Liste des utilisateurs</h1>
+    <div id = "infosUser">
+        <!-- <div class = "divFirstName">
+            <p>Prénom</p>
+            <p id = "pFirstName"></p>
+        </div>
+        <div class = "divLastName">
+            <p>Nom</p>
+            <p id = "pLastName"></p>
+        </div>
+        <div class = "divTel">
+            <p>Téléphone</p>
+            <p id = "pTel"></p>
+        </div>
+        <div class = "divMail">
+            <p>Email</p>
+            <p id = "pMail"></p>
+        </div> -->
+    </div>
+    <!-- <script>
+        async function listUser(){
+            const infosUser = document.getElementById("infosUser");
+            const json = await fetch("http://localhost:3000/users");
+            const jsonData = await json.json();
+            console.log(jsonData);
+            jsonData.forEach(element => {
+                let divFirstName = document.createElement("div");
+                divFirstName.className = "divFirstName";
+                infosUser.append(divFirstName);
+                let pTitleFirstName = document.createElement("p");
+                let pFirstName = document.createElement("p");
+                pTitleFirstName.appendChild(document.createTextNode("Prénom : "));
+                pFirstName.appendChild(document.createTextNode(element.firstname));
+                divFirstName.append(pTitleFirstName, pFirstName);
+
+                let divLastName = document.createElement("div");
+                divLastName.className = "divLastName";
+                infosUser.append(divLastName);
+                let pTitleLastName = document.createElement("p");
+                let pLastName = document.createElement("p");
+                pTitleLastName.appendChild(document.createTextNode("Nom de famille : "));
+                pFirstName.appendChild(document.createTextNode(element.lastname));
+                divLastName.append(pTitleLastName, pLastName);
+
+                let divTel = document.createElement("div");
+                divTel.className = "divTel";
+                infosUser.append(divTel);
+                let pTitleTel = document.createElement("p");
+                let pTel = document.createElement("p");
+                pTitleTel.appendChild(document.createTextNode("Numéro de téléphone : "));
+                pTel.appendChild(document.createTextNode(element.phone));
+                divTel.append(pTitleTel, pTel);
+
+                let divMail = document.createElement("div");
+                divMail.className = "divMail";
+                infosUser.append(divMail);
+                let pTitleMail = document.createElement("p");
+                let pMail = document.createElement("p");
+                pTitleMail.appendChild(document.createTextNode("Mail : "));
+                pMail.appendChild(document.createTextNode(element.email));
+                divMail.append(pTitleMail, pMail);
+
+
+            });
+            return jsonData
+        }
+        listUser();
+    </script> -->
+    <script>
+        async function postData(url = "", data = {}) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: "POST", // *GET, POST, PUT, DELETE, etc.
+                mode: "cors", // no-cors, *cors, same-origin
+                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: "same-origin", // include, *same-origin, omit
+                headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: "follow", // manual, *follow, error
+                referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data), // body data type must match "Content-Type" header
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
+
+        async function loadData(access_token) {
+            const response = await fetch("http://localhost:3000/users",
+                {
+                    headers:{ 'Authorization': 'Bearer '+access_token }
+                }
+            );
+            const jsonData = await response.json();
+            if(Array.isArray(jsonData)){
+                jsonData.forEach(element => {
+                let divFirstName = document.createElement("div");
+                divFirstName.className = "divFirstName";
+                infosUser.append(divFirstName);
+                let pTitleFirstName = document.createElement("p");
+                let pFirstName = document.createElement("p");
+                pTitleFirstName.appendChild(document.createTextNode("Prénom : "));
+                pFirstName.appendChild(document.createTextNode(element.firstname));
+                divFirstName.append(pTitleFirstName, pFirstName);
+
+                let divLastName = document.createElement("div");
+                divLastName.className = "divLastName";
+                infosUser.append(divLastName);
+                let pTitleLastName = document.createElement("p");
+                let pLastName = document.createElement("p");
+                pTitleLastName.appendChild(document.createTextNode("Nom de famille : "));
+                pFirstName.appendChild(document.createTextNode(element.lastname));
+                divLastName.append(pTitleLastName, pLastName);
+
+                let divTel = document.createElement("div");
+                divTel.className = "divTel";
+                infosUser.append(divTel);
+                let pTitleTel = document.createElement("p");
+                let pTel = document.createElement("p");
+                pTitleTel.appendChild(document.createTextNode("Numéro de téléphone : "));
+                pTel.appendChild(document.createTextNode(element.phone));
+                divTel.append(pTitleTel, pTel);
+
+                let divMail = document.createElement("div");
+                divMail.className = "divMail";
+                infosUser.append(divMail);
+                let pTitleMail = document.createElement("p");
+                let pMail = document.createElement("p");
+                pTitleMail.appendChild(document.createTextNode("Mail : "));
+                pMail.appendChild(document.createTextNode(element.email));
+                divMail.append(pTitleMail, pMail);
+                });
+            }else{
+                var refreshResponse= await refreshToken();
+                if(refreshResponse.access_token){
+                    loadData(refreshResponse.access_token)
+                }
+            }   
+        }
+        
+        async function refreshToken(){
+            var data = await postData("http://localhost:3000/auth/refreshtoken", JSON.parse( localStorage.getItem("tokens")))
+            localStorage.setItem('tokens', JSON.stringify(data));
+            return data;
+        }
+
+        if(!localStorage.getItem("tokens")){
+            location.href="./login.html";
+        }else{
+            var tokens= JSON.parse( localStorage.getItem("tokens"));
+            loadData(tokens.access_token);
+        }
+        includeHTML();
+    </script>
+</body>
+</html>

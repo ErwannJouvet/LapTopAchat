@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./navbar.css" />
+</head>
+
+<body>
+    <div w3-include-html="./navbar.html"></div>
+    <div id="listProducts"></div>
+    
+    <script src="./tools.js"></script>
+    <script src="./navbar.js"></script>
+    <script>
+        // document.addEventListener("onload", function() {
+        //     location.href="login.html";
+        // })
+        async function logJSONData(){
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            const json = await fetch(`http://localhost:3000/categorys/${id}/products`);
+            const jsonData = await json.json();
+            jsonData.forEach(element => {
+                let externDivProduct = document.createElement("div");
+                externDivProduct.setAttribute("id", "externDivProduct");
+                let divProduct = document.createElement("div");
+                divProduct.setAttribute("id", "divProduct");
+                let titleProduct = document.createElement("p");
+                let title_text = document.createTextNode(element.name);
+                titleProduct.appendChild(title_text);
+
+                let imgProduct = document.createElement("img");
+                imgProduct.src = element.image;
+
+                let priceProduct = document.createElement("p");
+                let price_text = document.createTextNode("Prix : " + element.price);
+                priceProduct.appendChild(price_text);
+
+                let boutonDetail = document.createElement("button");
+                let textBoutonDetail = document.createTextNode("Detail");
+                boutonDetail.setAttribute("id", "boutonDetail")
+                boutonDetail.appendChild(textBoutonDetail);
+                boutonDetail.addEventListener('click', function() {
+                    window.location.href = `detail.html?id=${element.id}`;
+                });
+
+                externDivProduct.appendChild(divProduct);
+                divProduct.appendChild(titleProduct);
+                divProduct.appendChild(imgProduct);
+                divProduct.appendChild(priceProduct);
+                divProduct.appendChild(boutonDetail);
+                document.body.appendChild(externDivProduct);
+            });
+        }
+        logJSONData(); 
+        includeHTML();      
+    </script>
+</body>
+</html>

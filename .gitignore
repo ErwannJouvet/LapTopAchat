@@ -1,0 +1,35 @@
+# compiled output
+server_rest/dist
+server_rest/node_modules
+
+# Logs
+server_rest/logs
+server_rest/*.log
+server_rest/npm-debug.log*
+server_rest/pnpm-debug.log*
+server_rest/yarn-debug.log*
+server_rest/yarn-error.log*
+server_rest/lerna-debug.log*
+
+# OS
+server_rest/.DS_Store
+
+# Tests
+server_rest/coverage
+server_rest/.nyc_output
+
+# IDEs and editors
+server_rest/.idea
+server_rest/.project
+server_rest/.classpath
+server_rest/.c9/
+server_rest/*.launch
+server_rest/.settings/
+server_rest/*.sublime-workspace
+
+# IDE - VSCode
+server_rest/.vscode/*
+server_rest/!.vscode/settings.json
+server_rest/!.vscode/tasks.json
+server_rest/!.vscode/launch.json
+server_rest/!.vscode/extensions.json
